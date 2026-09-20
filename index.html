@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VF Locadora de Motos | Aluguel Rápido e Fácil</title>
+    <meta name="description" content="Alugue sua moto na VF Locadora. Modelos novos, sem burocracia e com o melhor preço para você focar no que importa.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:ital,wght@0,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E63946',
+                            redDark: '#c72733',
+                            black: '#111111',
+                            darkGray: '#1C1C1C',
+                            silver: '#D1D5DB', // gray-300 approx
+                            lightSilver: '#F3F4F6' // gray-100
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(28, 28, 28, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-pattern {
+            background-color: #111111;
+            background-image: radial-gradient(rgba(230, 57, 70, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .moto-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .moto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(230, 57, 70, 0.1), 0 8px 10px -6px rgba(230, 57, 70, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-brand-silver font-sans antialiased overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 glass-panel border-b-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-display font-black text-3xl tracking-tighter text-white">
+                        VF<span class="text-brand-red">.</span>LOCADORA
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#frota" class="text-brand-silver hover:text-brand-red transition-colors font-semibold">Nossa Frota</a>
+                    <a href="#vantagens" class="text-brand-silver hover:text-brand-red transition-colors font-semibold">Vantagens</a>
+                    <a href="#faq" class="text-brand-silver hover:text-brand-red transition-colors font-semibold">Dúvidas</a>
+                    <a href="#contato" class="bg-brand-red hover:bg-brand-redDark text-white px-6 py-2 rounded-full font-bold transition-all shadow-[0_0_15px_rgba(230,57,70,0.4)] hover:shadow-[0_0_25px_rgba(230,57,70,0.6)] flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Alugar Agora
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-red focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-darkGray border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#frota" class="block px-3 py-2 text-base font-medium text-white hover:text-brand-red">Nossa Frota</a>
+                <a href="#vantagens" class="block px-3 py-2 text-base font-medium text-white hover:text-brand-red">Vantagens</a>
+                <a href="#faq" class="block px-3 py-2 text-base font-medium text-white hover:text-brand-red">Dúvidas Frequentes</a>
+                <a href="#contato" class="block px-3 py-2 text-base font-bold text-brand-red">Chamar no WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-pattern">
+        <!-- Abstract glowing orb -->
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-red rounded-full mix-blend-screen filter blur-[120px] opacity-30 animate-pulse"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-black text-white leading-tight mb-6">
+                    Acelere seus ganhos, <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-orange-500">
+                        sem burocracia.
+                    </span>
+                </h1>
+                <p class="mt-4 text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
+                    Motos revisadas, seguradas e prontas para rodar. Foque em faturar, a manutenção é por nossa conta.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#frota" class="bg-brand-red hover:bg-brand-redDark text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(230,57,70,0.4)] flex items-center justify-center gap-2">
+                        Ver Motos Disponíveis
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#vantagens" class="bg-transparent border border-brand-silver text-brand-silver hover:bg-white/5 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center">
+                        Como Funciona
+                    </a>
+                </div>
+                
+                <!-- Trust badges -->
+                <div class="mt-16 flex flex-wrap justify-center gap-8 text-gray-500 text-sm font-semibold uppercase tracking-wider">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shield-check" class="text-brand-red"></i> Seguro Incluso
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="wrench" class="text-brand-red"></i> Manutenção Grátis
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="phone-call" class="text-brand-red"></i> Suporte 24h
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="frota" class="py-24 bg-brand-darkGray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-4">Nossa <span class="text-brand-red">Frota</span></h2>
+                <p class="text-gray-400 text-lg">Veículos 100% revisados e prontos para o trabalho duro.</p>
+            </div>
+
+            <!-- Dynamic grid populated by JS -->
+            <div id="motos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be injected here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="vantagens" class="py-24 bg-brand-black border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-display font-black text-white mb-6">Por que escolher a <span class="text-brand-red">VF Locadora</span>?</h2>
+                    <p class="text-gray-400 mb-8 text-lg">Entendemos a correria do dia a dia. Por isso, simplificamos tudo para que você só precise se preocupar em pilotar.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center">
+                                <i data-lucide="file-check-2" class="text-brand-red w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xl">Zero Burocracia</h4>
+                                <p class="text-gray-500 mt-1">Sem consulta ao SPC/Serasa. Aprovação rápida para você sair rodando hoje mesmo.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center">
+                                <i data-lucide="bike" class="text-brand-red w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xl">Manutenção Preventiva</h4>
+                                <p class="text-gray-500 mt-1">Desgaste natural das peças? Nós cobrimos. Troca de óleo, relação, freios inclusos no plano.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center">
+                                <i data-lucide="key" class="text-brand-red w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xl">Opção de Compra</h4>
+                                <p class="text-gray-500 mt-1">Alugue agora e, se quiser, a moto pode ser sua no final do plano.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <!-- Placeholder for an atmospheric image of a motorcycle -->
+                    <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Moto em movimento à noite" class="w-full h-auto opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-black via-transparent to-brand-red/20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-brand-darkGray">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-4">Dúvidas <span class="text-brand-red">Frequentes</span></h2>
+                <p class="text-gray-400 text-lg">Tudo o que você precisa saber antes de alugar.</p>
+            </div>
+
+            <div class="space-y-4" id="faq-container">
+                <!-- FAQs will be generated here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 relative overflow-hidden bg-brand-red">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-6">Pronto para rodar?</h2>
+            <p class="text-white/90 text-xl mb-10 max-w-2xl mx-auto">
+                Fale com nossa equipe agora mesmo pelo WhatsApp, escolha sua moto e comece a faturar.
+            </p>
+            
+            <a href="https://wa.me/5511997336547?text=Olá,%20tenho%20interesse%20em%20alugar%20uma%20moto%20na%20VF%20Locadora!" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-3 bg-white text-brand-black hover:bg-gray-100 px-8 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-xl">
+                <!-- Custom WhatsApp Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                (11) 99733-6547
+            </a>
+            
+            <p class="mt-6 text-white/70 text-sm">Atendimento de Seg a Sex, das 08h às 18h.</p>
+        </div>
+    </section>
+
+    <footer class="bg-brand-black border-t border-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="font-display font-black text-2xl text-white block mb-2">VF<span class="text-brand-red">.</span>LOCADORA</span>
+                <p class="text-gray-500 text-sm">© 2026 VF Locadora de Motos LTDA.<br/>Todos os direitos reservados.</p>
+            </div>
+            
+            <div class="text-center md:text-right text-gray-500 text-sm">
+                <p class="mb-1"><i data-lucide="map-pin" class="inline w-4 h-4 mr-1"></i> São Paulo - SP</p>
+                <p>CNPJ: 58.187.632/0001-96</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Data for Motorcycles (Can be easily edited here)
+        const motos = [
+            {
+                nome: "Honda CG Fan 160",
+                status: "Seminova",
+                precoDiario: "43,00",
+                precoSemanal: "300,00",
+                caucao: "700,00",
+                imagem: "https://placehold.co/600x400/222222/E63946?text=CG+Fan+160", // Placeholder for actual bike image
+                destaque: false
+            },
+            {
+                nome: "Honda CG Start 160",
+                status: "Seminova",
+                precoDiario: "38,50",
+                precoSemanal: "270,00",
+                caucao: "700,00",
+                imagem: "https://placehold.co/600x400/222222/D1D5DB?text=CG+Start+160",
+                destaque: true // Makes it pop out
+            },
+            {
+                nome: "Honda CG Start 160",
+                status: "Zero KM (2025)",
+                precoDiario: "48,50",
+                precoSemanal: "340,00",
+                caucao: "900,00",
+                imagem: "https://placehold.co/600x400/222222/ffffff?text=CG+Start+2025",
+                destaque: false
+            }
+        ];
+
+        // Render Motorcycles
+        const grid = document.getElementById('motos-grid');
+        motos.forEach(moto => {
+            const card = document.createElement('div');
+            card.className = `moto-card bg-brand-black rounded-2xl overflow-hidden border border-gray-800 flex flex-col ${moto.destaque ? 'ring-2 ring-brand-red relative' : ''}`;
+            
+            let badgeHtml = '';
+            if (moto.destaque) {
+                badgeHtml = `<div class="absolute top-4 right-4 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wider">Mais Popular</div>`;
+            }
+
+            card.innerHTML = `
+                ${badgeHtml}
+                <div class="h-48 overflow-hidden bg-gray-900 relative">
+                    <img src="${moto.imagem}" alt="${moto.nome}" class="w-full h-full object-cover opacity-80 mix-blend-screen">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <span class="text-xs font-bold text-gray-300 bg-gray-800/80 px-2 py-1 rounded backdrop-blur-sm">${moto.status}</span>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-2xl font-bold text-white mb-4 font-display">${moto.nome}</h3>
+                    
+                    <div class="space-y-3 mb-6 flex-grow">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Diária (aprox.)</span>
+                            <span class="text-xl font-bold text-white">R$ ${moto.precoDiario}</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Plano Semanal</span>
+                            <span class="text-lg font-semibold text-brand-red">R$ ${moto.precoSemanal}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm">Caução</span>
+                            <span class="text-gray-300 text-sm">R$ ${moto.caucao}</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/5511997336547?text=Olá,%20tenho%20interesse%20na%20moto%20${encodeURIComponent(moto.nome)}%20(${encodeURIComponent(moto.status)})" target="_blank" 
+                       class="w-full text-center bg-gray-800 hover:bg-brand-red text-white font-bold py-3 px-4 rounded-xl transition-colors mt-auto">
+                        Reservar Esta Moto
+                    </a>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // FAQ Data
+        const faqs = [
+            {
+                pergunta: "Preciso ter nome limpo para alugar?",
+                resposta: "Não! Na VF Locadora nós não fazemos consulta ao SPC ou Serasa. Queremos facilitar o seu trabalho."
+            },
+            {
+                pergunta: "O que está incluso no valor do aluguel?",
+                resposta: "O valor inclui a moto revisada, IPVA e licenciamento pagos, seguro contra roubo e furto, guincho e suporte 24h, e manutenção preventiva (desgaste natural)."
+            },
+            {
+                pergunta: "Como funciona o caução?",
+                resposta: "O caução é um valor de garantia pago na retirada da moto. Ele é devolvido no término do contrato, conforme os termos estabelecidos (como eventuais descontos por avarias não cobertas)."
+            },
+            {
+                pergunta: "Onde vocês atendem?",
+                resposta: "Atualmente atendemos São Paulo (foco na Zona Leste), Guarulhos, Alto Tietê e região."
+            },
+            {
+                pergunta: "Quais as formas de pagamento aceitas?",
+                resposta: "Aceitamos PIX, Cartão de Crédito, Cartão de Débito e Dinheiro."
+            }
+        ];
+
+        // Render FAQs with accordion logic
+        const faqContainer = document.getElementById('faq-container');
+        faqs.forEach((faq, index) => {
+            const item = document.createElement('div');
+            item.className = 'border border-gray-800 rounded-xl bg-brand-black overflow-hidden transition-all duration-300';
+            item.innerHTML = `
+                <button class="faq-btn w-full text-left px-6 py-5 focus:outline-none flex justify-between items-center" data-index="${index}">
+                    <span class="font-bold text-lg text-white pr-4">${faq.pergunta}</span>
+                    <i data-lucide="chevron-down" class="text-brand-red transition-transform duration-300 w-5 h-5 flex-shrink-0" id="icon-${index}"></i>
+                </button>
+                <div class="faq-content hidden px-6 pb-5 text-gray-400" id="content-${index}">
+                    <p>${faq.resposta}</p>
+                </div>
+            `;
+            faqContainer.appendChild(item);
+        });
+
+        // Re-init icons for the newly injected HTML
+        lucide.createIcons();
+
+        // FAQ Interaction Logic
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const index = btn.getAttribute('data-index');
+                const content = document.getElementById(`content-${index}`);
+                const icon = document.getElementById(`icon-${index}`);
+                
+                // Toggle current
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
