@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Site | VF Locadora</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E63946',
+                            redDark: '#c72733',
+                            black: '#111111',
+                            darkGray: '#1C1C1C',
+                            border: '#2A2A2A',
+                            silver: '#D1D5DB'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #111111; }
+        ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E63946; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Custom form inputs styling */
+        .admin-input {
+            width: 100%;
+            background-color: #111111;
+            border: 1px solid #2A2A2A;
+            color: #D1D5DB;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .admin-input:focus {
+            outline: none;
+            border-color: #E63946;
+            box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-brand-silver font-sans h-screen flex overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-brand-darkGray border-r border-brand-border flex flex-col hidden md:flex transition-all duration-300 z-20" id="sidebar">
+        <div class="h-20 flex items-center px-6 border-b border-brand-border">
+            <span class="font-display font-black text-xl text-white">
+                VF<span class="text-brand-red">.</span>CMS
+            </span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <p class="px-4 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 mt-4">Editor do Site</p>
+            
+            <button data-target="tab-textos" class="nav-btn w-full flex items-center gap-3 px-4 py-3 bg-brand-red/10 text-brand-red rounded-lg font-medium transition-colors border border-brand-red/20 text-left">
+                <i data-lucide="type" class="w-5 h-5"></i>
+                Textos e Config
+            </button>
+            <button data-target="tab-motos" class="nav-btn w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg font-medium transition-colors text-left">
+                <i data-lucide="motorcycle" class="w-5 h-5"></i>
+                Catálogo de Motos
+            </button>
+            <button data-target="tab-faq" class="nav-btn w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg font-medium transition-colors text-left">
+                <i data-lucide="help-circle" class="w-5 h-5"></i>
+                Dúvidas (FAQ)
+            </button>
+
+            <p class="px-4 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 mt-8">Sistema</p>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg font-medium transition-colors">
+                <i data-lucide="external-link" class="w-5 h-5"></i>
+                Ver Site Ao Vivo
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <header class="h-20 bg-brand-darkGray/80 backdrop-blur-md border-b border-brand-border flex items-center justify-between px-6 z-10">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <h1 class="text-xl font-display font-bold text-white" id="page-title">Textos e Configurações</h1>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-brand-red flex items-center justify-center text-white font-bold text-sm">P</div>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 md:p-8">
+            
+            <!-- TAB: Textos e Configurações -->
+            <div id="tab-textos" class="tab-content active max-w-4xl mx-auto">
+                <div class="bg-brand-darkGray border border-brand-border rounded-xl overflow-hidden">
+                    <div class="p-6 border-b border-brand-border">
+                        <h2 class="text-lg font-bold text-white">Informações Principais</h2>
+                        <p class="text-sm text-gray-400">Altere os textos que aparecem na página inicial do site.</p>
+                    </div>
+                    <form class="p-6 space-y-6" onsubmit="event.preventDefault(); showToast('Configurações salvas com sucesso!');">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Título Principal (Hero)</label>
+                                <input type="text" value="Acelere seus ganhos, sem burocracia." class="admin-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Subtítulo (Hero)</label>
+                                <textarea rows="3" class="admin-input">Motos revisadas, seguradas e prontas para rodar. Foque em faturar, a manutenção é por nossa conta.</textarea>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">Número do WhatsApp</label>
+                                    <input type="text" value="5511997336547" class="admin-input">
+                                    <p class="text-xs text-gray-500 mt-1">Apenas números, com DDI e DDD.</p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-400 mb-2">Mensagem Padrão WhatsApp</label>
+                                    <input type="text" value="Olá, tenho interesse em alugar uma moto!" class="admin-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Rodapé (Copyright)</label>
+                                <input type="text" value="© 2026 VF Locadora de Motos LTDA." class="admin-input">
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-brand-border flex justify-end">
+                            <button type="submit" class="bg-brand-red hover:bg-brand-redDark text-white px-6 py-2 rounded-lg font-bold transition-colors">
+                                Salvar Alterações
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TAB: Catálogo de Motos -->
+            <div id="tab-motos" class="tab-content max-w-6xl mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white font-display">Frota no Site</h2>
+                        <p class="text-sm text-gray-400">Gerencie as motos que aparecem para os clientes.</p>
+                    </div>
+                    <button onclick="openMotoModal()" class="bg-brand-red hover:bg-brand-redDark text-white px-4 py-2 rounded-lg font-bold transition-colors flex items-center gap-2 text-sm">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Adicionar Moto
+                    </button>
+                </div>
+
+                <div class="bg-brand-darkGray border border-brand-border rounded-xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-brand-black/50 text-gray-400 text-xs uppercase tracking-wider">
+                                    <th class="px-6 py-4 font-medium">Moto / Imagem</th>
+                                    <th class="px-6 py-4 font-medium">Status Visor</th>
+                                    <th class="px-6 py-4 font-medium">Preços</th>
+                                    <th class="px-6 py-4 font-medium text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-brand-border text-sm" id="moto-table-body">
+                                <!-- JS Populated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: FAQ -->
+            <div id="tab-faq" class="tab-content max-w-4xl mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white font-display">Dúvidas Frequentes</h2>
+                        <p class="text-sm text-gray-400">Edite as perguntas e respostas do site.</p>
+                    </div>
+                    <button onclick="openFaqModal()" class="bg-brand-red hover:bg-brand-redDark text-white px-4 py-2 rounded-lg font-bold transition-colors flex items-center gap-2 text-sm">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Nova Dúvida
+                    </button>
+                </div>
+
+                <div class="space-y-4" id="faq-list">
+                    <!-- JS Populated -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODALS -->
+
+    <!-- Moto Modal -->
+    <div id="moto-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-brand-darkGray border border-brand-border rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl transform transition-all">
+            <div class="px-6 py-4 border-b border-brand-border flex justify-between items-center bg-brand-black">
+                <h3 class="text-lg font-bold text-white" id="moto-modal-title">Adicionar Nova Moto</h3>
+                <button onclick="closeModals()" class="text-gray-400 hover:text-brand-red transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <form id="moto-form" class="p-6 space-y-4" onsubmit="saveMoto(event)">
+                <input type="hidden" id="moto-id">
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Nome/Modelo da Moto</label>
+                    <input type="text" id="moto-nome" required placeholder="Ex: Honda CG 160 Fan" class="admin-input">
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Status (Etiqueta)</label>
+                        <select id="moto-status" class="admin-input" required>
+                            <option value="Seminova">Seminova</option>
+                            <option value="Zero KM (2025)">Zero KM</option>
+                            <option value="Disponível">Disponível</option>
+                            <option value="Esgotada">Esgotada</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Destaque?</label>
+                        <select id="moto-destaque" class="admin-input" required>
+                            <option value="false">Não</option>
+                            <option value="true">Sim (Borda Vermelha)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Diária (R$)</label>
+                        <input type="text" id="moto-diaria" required placeholder="43,00" class="admin-input">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Semanal (R$)</label>
+                        <input type="text" id="moto-semanal" required placeholder="300,00" class="admin-input">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Caução (R$)</label>
+                        <input type="text" id="moto-caucao" required placeholder="700,00" class="admin-input">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">URL da Imagem</label>
+                    <input type="url" id="moto-imagem" required placeholder="https://..." class="admin-input">
+                    <p class="text-xs text-gray-500 mt-1">Cole o link da foto da moto.</p>
+                </div>
+
+                <div class="pt-4 border-t border-brand-border flex justify-end gap-3 mt-6">
+                    <button type="button" onclick="closeModals()" class="px-6 py-2 rounded-lg font-medium text-gray-400 hover:text-white transition-colors">Cancelar</button>
+                    <button type="submit" class="bg-brand-red hover:bg-brand-redDark text-white px-6 py-2 rounded-lg font-bold transition-colors">Salvar Moto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div id="faq-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-brand-darkGray border border-brand-border rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl">
+            <div class="px-6 py-4 border-b border-brand-border flex justify-between items-center bg-brand-black">
+                <h3 class="text-lg font-bold text-white" id="faq-modal-title">Editar Dúvida</h3>
+                <button onclick="closeModals()" class="text-gray-400 hover:text-brand-red transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <form id="faq-form" class="p-6 space-y-4" onsubmit="saveFaq(event)">
+                <input type="hidden" id="faq-id">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Pergunta</label>
+                    <input type="text" id="faq-pergunta" required class="admin-input">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Resposta</label>
+                    <textarea id="faq-resposta" required rows="4" class="admin-input"></textarea>
+                </div>
+                <div class="pt-4 border-t border-brand-border flex justify-end gap-3 mt-6">
+                    <button type="button" onclick="closeModals()" class="px-6 py-2 rounded-lg font-medium text-gray-400 hover:text-white transition-colors">Cancelar</button>
+                    <button type="submit" class="bg-brand-red hover:bg-brand-redDark text-white px-6 py-2 rounded-lg font-bold transition-colors">Salvar Dúvida</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification (Replaces alert) -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+        <i data-lucide="check-circle" class="w-5 h-5"></i>
+        <span id="toast-msg" class="font-medium">Salvo com sucesso!</span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // --- Toast System ---
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = message;
+            
+            if (isError) {
+                toast.classList.replace('bg-green-500', 'bg-brand-red');
+            } else {
+                toast.classList.replace('bg-brand-red', 'bg-green-500');
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- Tab Navigation Logic ---
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const pageTitle = document.getElementById('page-title');
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update buttons UI
+                navBtns.forEach(b => {
+                    b.classList.remove('bg-brand-red/10', 'text-brand-red', 'border', 'border-brand-red/20');
+                    b.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-white/5');
+                });
+                btn.classList.add('bg-brand-red/10', 'text-brand-red', 'border', 'border-brand-red/20');
+                btn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-white/5');
+
+                // Update Title
+                pageTitle.innerText = btn.innerText.trim();
+
+                // Show Content
+                const target = btn.getAttribute('data-target');
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // --- State Data (Mock Database) ---
+        let motosData = [
+            { id: 1, nome: "Honda CG Fan 160", status: "Seminova", diaria: "43,00", semanal: "300,00", caucao: "700,00", destaque: false, imagem: "https://placehold.co/100x100/222222/E63946?text=CG+Fan" },
+            { id: 2, nome: "Honda CG Start 160", status: "Zero KM (2025)", diaria: "48,50", semanal: "340,00", caucao: "900,00", destaque: true, imagem: "https://placehold.co/100x100/222222/D1D5DB?text=Start" }
+        ];
+
+        let faqsData = [
+            { id: 1, pergunta: "Preciso ter nome limpo para alugar?", resposta: "Não! Na VF Locadora nós não fazemos consulta ao SPC ou Serasa." },
+            { id: 2, pergunta: "Como funciona o caução?", resposta: "O caução é um valor de garantia pago na retirada da moto." }
+        ];
+
+        // --- Render Functions ---
+        function renderMotos() {
+            const tbody = document.getElementById('moto-table-body');
+            tbody.innerHTML = '';
+            
+            motosData.forEach(moto => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-white/[0.02] transition-colors group";
+                
+                const highlightBadge = moto.destaque ? `<span class="bg-brand-red text-white text-[10px] px-2 py-0.5 rounded-full ml-2 uppercase font-bold">Destaque</span>` : '';
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-800 flex-shrink-0">
+                                <img src="${moto.imagem}" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <div class="font-bold text-white group-hover:text-brand-red transition-colors flex items-center">
+                                    ${moto.nome} ${highlightBadge}
+                                </div>
+                                <div class="text-xs text-gray-500">ID: ${moto.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs border border-gray-700">${moto.status}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-gray-300 text-sm">Diária: <span class="font-bold text-white">R$ ${moto.diaria}</span></div>
+                        <div class="text-xs text-gray-500">Semanal: R$ ${moto.semanal}</div>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <button onclick="editMoto(${moto.id})" class="p-2 text-gray-400 hover:text-white bg-brand-black hover:bg-gray-800 border border-gray-800 rounded-lg transition-colors mr-2">
+                            <i data-lucide="edit" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="deleteMoto(${moto.id})" class="p-2 text-gray-400 hover:text-brand-red bg-brand-black hover:bg-brand-red/10 border border-gray-800 rounded-lg transition-colors">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        function renderFaqs() {
+            const list = document.getElementById('faq-list');
+            list.innerHTML = '';
+
+            faqsData.forEach(faq => {
+                const div = document.createElement('div');
+                div.className = "bg-brand-darkGray border border-brand-border rounded-xl p-5 flex justify-between items-start gap-4";
+                div.innerHTML = `
+                    <div class="flex-1">
+                        <h4 class="font-bold text-white text-lg mb-2">${faq.pergunta}</h4>
+                        <p class="text-gray-400 text-sm">${faq.resposta}</p>
+                    </div>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <button onclick="editFaq(${faq.id})" class="p-2 text-gray-400 hover:text-white bg-brand-black border border-gray-800 rounded-lg transition-colors">
+                            <i data-lucide="edit" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="deleteFaq(${faq.id})" class="p-2 text-gray-400 hover:text-brand-red bg-brand-black border border-gray-800 rounded-lg transition-colors">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        // --- Modals Logic ---
+        function closeModals() {
+            document.getElementById('moto-modal').classList.add('hidden');
+            document.getElementById('faq-modal').classList.add('hidden');
+        }
+
+        // --- Moto CRUD ---
+        function openMotoModal(id = null) {
+            const modal = document.getElementById('moto-modal');
+            const title = document.getElementById('moto-modal-title');
+            
+            if (id) {
+                title.innerText = "Editar Moto";
+                const moto = motosData.find(m => m.id === id);
+                document.getElementById('moto-id').value = moto.id;
+                document.getElementById('moto-nome').value = moto.nome;
+                document.getElementById('moto-status').value = moto.status;
+                document.getElementById('moto-destaque').value = moto.destaque.toString();
+                document.getElementById('moto-diaria').value = moto.diaria;
+                document.getElementById('moto-semanal').value = moto.semanal;
+                document.getElementById('moto-caucao').value = moto.caucao;
+                document.getElementById('moto-imagem').value = moto.imagem;
+            } else {
+                title.innerText = "Adicionar Nova Moto";
+                document.getElementById('moto-form').reset();
+                document.getElementById('moto-id').value = '';
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function editMoto(id) { openMotoModal(id); }
+
+        function deleteMoto(id) {
+            // Using a custom modal would be better, but simulating logic here
+            motosData = motosData.filter(m => m.id !== id);
+            renderMotos();
+            showToast("Moto removida com sucesso.");
+        }
+
+        function saveMoto(e) {
+            e.preventDefault();
+            const id = document.getElementById('moto-id').value;
+            
+            const motoObj = {
+                id: id ? parseInt(id) : Date.now(),
+                nome: document.getElementById('moto-nome').value,
+                status: document.getElementById('moto-status').value,
+                destaque: document.getElementById('moto-destaque').value === 'true',
+                diaria: document.getElementById('moto-diaria').value,
+                semanal: document.getElementById('moto-semanal').value,
+                caucao: document.getElementById('moto-caucao').value,
+                imagem: document.getElementById('moto-imagem').value
+            };
+
+            if (id) {
+                const index = motosData.findIndex(m => m.id === parseInt(id));
+                motosData[index] = motoObj;
+            } else {
+                motosData.push(motoObj);
+            }
+
+            closeModals();
+            renderMotos();
+            showToast("Moto salva e enviada para o site!");
+        }
+
+        // --- FAQ CRUD ---
+        function openFaqModal(id = null) {
+            const modal = document.getElementById('faq-modal');
+            const title = document.getElementById('faq-modal-title');
+            
+            if (id) {
+                title.innerText = "Editar Dúvida";
+                const faq = faqsData.find(f => f.id === id);
+                document.getElementById('faq-id').value = faq.id;
+                document.getElementById('faq-pergunta').value = faq.pergunta;
+                document.getElementById('faq-resposta').value = faq.resposta;
+            } else {
+                title.innerText = "Adicionar Nova Dúvida";
+                document.getElementById('faq-form').reset();
+                document.getElementById('faq-id').value = '';
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function editFaq(id) { openFaqModal(id); }
+
+        function deleteFaq(id) {
+            faqsData = faqsData.filter(f => f.id !== id);
+            renderFaqs();
+            showToast("Dúvida removida do site.");
+        }
+
+        function saveFaq(e) {
+            e.preventDefault();
+            const id = document.getElementById('faq-id').value;
+            
+            const faqObj = {
+                id: id ? parseInt(id) : Date.now(),
+                pergunta: document.getElementById('faq-pergunta').value,
+                resposta: document.getElementById('faq-resposta').value
+            };
+
+            if (id) {
+                const index = faqsData.findIndex(f => f.id === parseInt(id));
+                faqsData[index] = faqObj;
+            } else {
+                faqsData.push(faqObj);
+            }
+
+            closeModals();
+            renderFaqs();
+            showToast("Dúvida salva com sucesso!");
+        }
+
+        // Initial render
+        renderMotos();
+        renderFaqs();
+    </script>
+</body>
+</html>
