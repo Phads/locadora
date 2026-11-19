@@ -1,85 +1,239 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Barbearia Honorato</title>
-<meta name="description" content="Corte, barba e sobrancelha em Rio Doce, Olinda. Faça seu cadastro e agende online, de segunda a sábado.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css">
-<a class="skip" href="#agendar">Ir para o agendamento</a>
-<header><div class="w">
-<a class="logo" href="#top"><i>BH</i>Barbearia Honorato</a>
-<nav aria-label="Principal"><a class="lk" href="#agendar">Agendar</a><a class="lk" href="#equipe">Equipe</a><a class="lk" href="#duvidas">Dúvidas</a><a class="lk" href="#onde">Onde estamos</a></nav>
-<button class="b o" id="acct" type="button">Entrar</button>
-</div></header>
+<!doctype html>
+<html lang="pt-BR">
 
-<main id="top">
-<section class="hero"><div class="w">
-<div>
-<span class="k" data-enter>Rio Doce · Olinda</span>
-<h1 data-enter="2">Corte, barba e sobrancelha, com hora marcada.</h1>
-<p data-enter="3">Atendemos de segunda a sexta, das 9h às 20h, e aos sábados até as 19h. Escolha os serviços, o dia e o horário em menos de um minuto.</p>
-<div class="acts" data-enter="4"><a class="b" href="#agendar">Agendar horário</a><button class="b o" type="button" data-open="reg">Criar cadastro</button></div>
-</div>
-<div class="ph" data-enter="2"><img src="assets/fachada.jpg" width="617" height="361" alt="Fachada da Barbearia Honorato, com o letreiro e o poste de barbeiro na entrada"></div>
-</div></section>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Barbearia Honorato</title>
+    <meta name="description"
+        content="Corte, barba e sobrancelha em Rio Doce, Olinda. Faça seu cadastro e agende online, de segunda a sábado.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-<section class="team" id="equipe"><div class="w">
-<div class="ph"><img loading="lazy" src="assets/equipe.jpg" width="920" height="691" alt="Os dois barbeiros da Honorato sorrindo, de braços cruzados e com as máquinas na mão"></div>
-<div><span class="k">A casa</span><h2>Dois barbeiros atendendo ao mesmo tempo.</h2><p>Você escolhe o que quer fazer e a gente reserva o tempo certo para cada serviço. Com dois profissionais na casa, a agenda tem mais horários livres.</p></div>
-</div></section>
+<body>
+    <a class="skip" href="#agendar">Ir para o agendamento</a>
 
-<section class="book" id="agendar"><div class="w">
-<div>
-<span class="k">Agendamento</span><h2>Monte seu atendimento</h2>
-<p>Marque um ou mais serviços. O tempo total define os horários disponíveis.</p>
-<fieldset><legend>1 · Serviços</legend><div id="svcs"></div></fieldset>
-<fieldset><legend>2 · Dia</legend><div class="chips" id="days"></div></fieldset>
-<fieldset><legend>3 · Horário</legend><div class="chips" id="slots" aria-live="polite"></div></fieldset>
-</div>
-<aside class="sum" aria-labelledby="sh"><h3 id="sh">Seu resumo</h3>
-<ul id="sl"></ul>
-<div class="row"><span>Tempo</span><b id="st">A definir</b></div><div class="row"><span>Quando</span><b id="sw">A definir</b></div><div class="row"><span>Total</span><b id="sp">R$ 0,00</b></div>
-<button class="b" id="ok" type="button" disabled>Confirmar agendamento</button>
-<div class="msg" id="msg" role="status">Escolha ao menos um serviço, o dia e o horário.</div>
-</aside>
-</div></section>
+    <header>
+        <div class="w">
+            <a class="logo" href="#top"><i>BH</i>Barbearia Honorato</a>
+            <nav aria-label="Principal">
+                <a class="lk" href="#agendar">Agendar</a>
+                <a class="lk" href="#equipe">Equipe</a>
+                <a class="lk" href="#duvidas">Dúvidas</a>
+                <a class="lk" href="#onde">Onde estamos</a>
+            </nav>
+            <button class="b o" id="acct" type="button">Entrar</button>
+        </div>
+    </header>
 
-<section class="faq" id="duvidas"><div class="w">
-<div><span class="k">Dúvidas</span><h2>Antes de vir</h2></div>
-<div>
-<details><summary>Preciso de cadastro para agendar?</summary><p>Precisa, mas só uma vez: basta informar nome e WhatsApp. Depois disso, você vê, edita e cancela seus horários em “Minha conta”.</p></details>
-<details><summary>Posso marcar mais de um serviço no mesmo horário?</summary><p>Pode. Se marcar corte e barba, por exemplo, o sistema soma o tempo dos dois e só mostra os horários em que tudo cabe.</p></details>
-<details><summary>Quanto tempo leva cada serviço?</summary><p>Barba leva 30 minutos, corte com barba leva 60 e botox leva 120. O tempo de cada serviço aparece ao lado do nome, na hora de agendar.</p></details>
-<details><summary>Como posso pagar?</summary><p>Dinheiro, cartão de crédito e cartão de débito.</p></details>
-<details><summary>Vocês atendem crianças?</summary><p>Atendemos, sim. É só marcar o horário normalmente.</p></details>
-<details><summary>Tem estacionamento e acessibilidade?</summary><p>Tem estacionamento, a entrada é acessível e há Wi-Fi para quem espera.</p></details>
-<details><summary>Como cancelo ou mudo meu horário?</summary><p>Abra “Minha conta” e toque em “Editar” para trocar serviço, dia ou horário. Se não puder vir, toque em “Cancelar”. Também dá para chamar no WhatsApp.</p></details>
-</div>
-</div></section>
+    <main id="top">
+        <section class="hero">
+            <div class="w">
+                <div>
+                    <span class="k" data-enter>Rio Doce · Olinda</span>
+                    <h1 data-enter="2">Corte, barba e sobrancelha, com hora marcada.</h1>
+                    <p data-enter="3">Atendemos de segunda a sexta, das 9h às 20h, e aos sábados até as 19h. Escolha os
+                        serviços, o dia e o horário em menos de um minuto.</p>
+                    <div class="acts" data-enter="4">
+                        <a class="b" href="#agendar">Agendar horário</a>
+                        <button class="b o" type="button" data-open="reg">Criar cadastro</button>
+                    </div>
+                </div>
+                <div class="ph" data-enter="2">
+                    <img src="fachada_3.jpg" width="617" height="361"
+                        alt="Fachada da Barbearia Honorato, com o letreiro e o poste de barbeiro na entrada"
+                        onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='assets/fachada.jpg';}else{this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20617%20361%22%3E%3Crect%20width%3D%22617%22%20height%3D%22361%22%20fill%3D%22%2315130f%22%2F%3E%3Crect%20x%3D%2224%22%20y%3D%2224%22%20width%3D%22569%22%20height%3D%22313%22%20fill%3D%22none%22%20stroke%3D%22%232c2720%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2245%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%23c8a45c%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2242%22%20letter-spacing%3D%224%22%3EBH%3C%2Ftext%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2260%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%23a69d8d%22%20font-family%3D%22sans-serif%22%20font-size%3D%2214%22%20letter-spacing%3D%223%22%3EBARBEARIA%20HONORATO%20%C2%B7%20FACHADA%3C%2Ftext%3E%3C%2Fsvg%3E';}">
+                </div>
+            </div>
+        </section>
 
-<section class="loc" id="onde"><div class="w">
-<div><span class="k">Onde estamos</span><h2>Avenida das Garças, Rio Doce</h2><p>Olinda, Pernambuco. Tem estacionamento e a entrada é acessível.</p>
-<div class="acts" style="margin-top:28px"><a class="b" href="https://www.google.com/maps/search/?api=1&query=Barbearia+Honorato+Avenida+das+Gar%C3%A7as+Rio+Doce+Olinda" target="_blank" rel="noopener">Como chegar</a><a class="b o" href="https://wa.me/5581973178238" target="_blank" rel="noopener">Chamar no WhatsApp</a></div>
-<h3 class="s">Contato</h3><p><a class="lk" href="tel:+5581973178238">(81) 97317-8238</a> · <a class="lk" href="https://instagram.com/barbeariahonorato_" target="_blank" rel="noopener">@barbeariahonorato_</a></p>
-<h3 class="s">Pagamento</h3><div class="pills"><span>Dinheiro</span><span>Cartão de crédito</span><span>Cartão de débito</span></div></div>
-<div><h3 class="s" style="margin-top:0">Horário de atendimento</h3>
-<dl id="hrs"></dl></div>
-</div></section>
-</main>
-<main id="conta" hidden></main>
-<footer><div class="w"><span>© Barbearia Honorato · Rio Doce, Olinda/PE</span><span>Domingo fechado</span></div></footer>
+        <section class="team" id="equipe">
+            <div class="w">
+                <div class="ph">
+                    <img loading="lazy" src="equipe_3.jpg" width="920" height="691"
+                        alt="Os dois barbeiros da Honorato sorrindo, de braços cruzados e com as máquinas na mão"
+                        onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='assets/equipe.jpg';}else{this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20920%20691%22%3E%3Crect%20width%3D%22920%22%20height%3D%22691%22%20fill%3D%22%2315130f%22%2F%3E%3Crect%20x%3D%2232%22%20y%3D%2232%22%20width%3D%22856%22%20height%3D%22627%22%20fill%3D%22none%22%20stroke%3D%22%232c2720%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2246%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%23c8a45c%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2256%22%20letter-spacing%3D%224%22%3EBH%3C%2Ftext%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2258%25%22%20text-anchor%3D%22middle%22%20fill%3D%22%23a69d8d%22%20font-family%3D%22sans-serif%22%20font-size%3D%2218%22%20letter-spacing%3D%223%22%3EBARBEARIA%20HONORATO%20%C2%B7%20EQUIPE%3C%2Ftext%3E%3C%2Fsvg%3E';}">
+                </div>
+                <div>
+                    <span class="k">A casa</span>
+                    <h2>Dois barbeiros atendendo ao mesmo tempo.</h2>
+                    <p>Você escolhe o que quer fazer e a gente reserva o tempo certo para cada serviço. Com dois
+                        profissionais na casa, a agenda tem mais horários livres.</p>
+                </div>
+            </div>
+        </section>
 
-<nav class="tab" aria-label="Navegação principal">
-<a href="#agendar" data-t="agendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Agendar</span></a>
-<a href="#equipe" data-t="equipe"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7"/></svg><span>Equipe</span></a>
-<a href="#duvidas" data-t="duvidas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.01"/></svg><span>Dúvidas</span></a>
-<a href="#onde" data-t="onde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Onde</span></a>
-<a href="#conta" data-t="conta" id="tabc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg><span>Entrar</span></a>
-</nav>
+        <section class="book" id="agendar">
+            <div class="w">
+                <div>
+                    <span class="k">Agendamento</span>
+                    <h2>Monte seu atendimento</h2>
+                    <p>Marque um ou mais serviços. O tempo total define os horários disponíveis.</p>
+                    <fieldset>
+                        <legend>1 · Serviços</legend>
+                        <div id="svcs"></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>2 · Dia</legend>
+                        <div class="chips" id="days"></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>3 · Horário</legend>
+                        <div class="chips" id="slots" aria-live="polite"></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="s">4 · Pagamento</legend>
+                        <div class="pills">
+                            <span>Pix</span>
+                            <span>Dinheiro</span>
+                            <span>Cartão de crédito</span>
+                            <span>Cartão de débito</span>
+                        </div>
+                    </fieldset>
 
-<dialog id="dlg" aria-labelledby="dt"><button class="x" type="button" aria-label="Fechar" id="cx">×</button>
-<h2 id="dt"></h2><div id="dbody"></div></dialog>
+                </div>
+                <aside class="sum" aria-labelledby="sh">
+                    <h3 id="sh">Seu resumo</h3>
+                    <ul id="sl"></ul>
+                    <div class="row"><span>Tempo</span><b id="st">A definir</b></div>
+                    <div class="row"><span>Quando</span><b id="sw">A definir</b></div>
+                    <div class="row"><span>Total</span><b id="sp">R$ 0,00</b></div>
+                    <button class="b" id="ok" type="button" disabled>Confirmar agendamento</button>
+                    <div class="msg" id="msg" role="status">Escolha ao menos um serviço, o dia e o horário.</div>
+                </aside>
+            </div>
+        </section>
 
-<script src="script.js"></script>
+        <section class="faq" id="duvidas">
+            <div class="w">
+                <div>
+                    <span class="k">Tire suas dúvidas</span>
+                    <h2>PERGUNTAS FREQUENTES</h2>
+                </div>
+                <div>
+                    <details>
+                        <summary>Preciso de cadastro para agendar?</summary>
+                        <p>Precisa, mas só uma vez: basta informar nome e WhatsApp. Depois disso, você vê, edita e
+                            cancela seus horários em “Minha conta”.</p>
+                    </details>
+                    <details>
+                        <summary>Posso marcar mais de um serviço no mesmo horário?</summary>
+                        <p>Pode. Se marcar corte e barba, por exemplo, o sistema soma o tempo dos dois e só mostra os
+                            horários em que tudo cabe.</p>
+                    </details>
+                    <details>
+                        <summary>Quanto tempo leva cada serviço?</summary>
+                        <p>Barba leva 30 minutos, corte com barba leva 60 e botox leva 120. O tempo de cada serviço
+                            aparece ao lado do nome, na hora de agendar.</p>
+                    </details>
+                    <details>
+                        <summary>Como posso pagar?</summary>
+                        <p>Pix, dinheiro, cartão de crédito e cartão de débito.</p>
+                    </details>
+                    <details>
+                        <summary>Vocês atendem crianças?</summary>
+                        <p>Atendemos, sim. É só marcar o horário normalmente.</p>
+                    </details>
+                    <details>
+                        <summary>Tem estacionamento e acessibilidade?</summary>
+                        <p>Tem estacionamento, a entrada é acessível e há Wi-Fi para quem espera.</p>
+                    </details>
+                    <details>
+                        <summary>Como cancelo ou mudo meu horário?</summary>
+                        <p>Abra “Minha conta” e toque em “Editar” para trocar serviço, dia ou horário. Se não puder vir,
+                            toque em “Cancelar”. Também dá para chamar no WhatsApp.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
 
+        <section class="loc" id="onde">
+            <div class="w">
+                <div>
+                    <span class="k">Onde estamos</span>
+                    <h2>Avenida das Garças, Rio Doce</h2>
+                    <p>Olinda, Pernambuco. Tem estacionamento e a entrada é acessível.</p>
+                    <div class="acts" style="margin-top:28px">
+                        <a class="b"
+                            href="https://www.google.com/maps/search/?api=1&query=Barbearia+Honorato+Avenida+das+Gar%C3%A7as+Rio+Doce+Olinda"
+                            target="_blank" rel="noopener">Como chegar</a>
+                        <a class="b o" href="https://wa.me/5581973178238" target="_blank" rel="noopener">Chamar no
+                            WhatsApp</a>
+                    </div>
+                    <h3 class="s">Contato</h3>
+                    <p>
+                        <a class="lk" href="tel:+5581973178238">(81) 97317-8238</a> ·
+                        <a class="lk" href="https://instagram.com/barbeariahonorato_" target="_blank"
+                            rel="noopener">@barbeariahonorato_</a>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="s" style="margin-top:0">Horário de atendimento</h3>
+                    <dl id="hrs"></dl>
+                </div>
+            </div>
+        </section>
+    </main>
 
-</body></html>
+    <main id="conta" hidden></main>
+
+    <footer>
+        <div class="w">
+            <span>© Barbearia Honorato · Rio Doce, Olinda/PE</span>
+            <span>Domingo fechado</span>
+        </div>
+    </footer>
+
+    <nav class="tab" aria-label="Navegação principal">
+        <a href="#agendar" data-t="agendar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+            </svg>
+            <span>Agendar</span>
+        </a>
+        <a href="#equipe" data-t="equipe">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="9" cy="8" r="3.5" />
+                <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+                <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+            </svg>
+            <span>Equipe</span>
+        </a>
+        <a href="#duvidas" data-t="duvidas">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.01" />
+            </svg>
+            <span>Dúvidas</span>
+        </a>
+        <a href="#onde" data-t="onde">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" />
+                <circle cx="12" cy="9.5" r="2.5" />
+            </svg>
+            <span>Onde</span>
+        </a>
+        <a href="#conta" data-t="conta" id="tabc">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" />
+            </svg>
+            <span>Entrar</span>
+        </a>
+    </nav>
+
+    <dialog id="dlg" aria-labelledby="dt">
+        <button class="x" type="button" aria-label="Fechar" id="cx">×</button>
+        <h2 id="dt"></h2>
+        <div id="dbody"></div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
