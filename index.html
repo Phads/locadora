@@ -34,7 +34,10 @@
         <section class="hero">
             <div class="w">
                 <div>
-                    <span class="k" data-enter>Rio Doce · Olinda</span>
+                    <div class="hero-meta" data-enter>
+                        <span class="k">Rio Doce · Olinda</span>
+                        <span class="status-pill" data-live-status></span>
+                    </div>
                     <h1 data-enter="2">Corte, barba e sobrancelha, com hora marcada.</h1>
                     <p data-enter="3">Atendemos de segunda a sexta, das 9h às 20h, e aos sábados até as 19h. Escolha os
                         serviços, o dia e o horário em menos de um minuto.</p>
@@ -83,16 +86,11 @@
                     </fieldset>
                     <fieldset>
                         <legend>3 · Horário</legend>
-                        <div class="chips" id="slots" aria-live="polite"></div>
+                        <div class="slot-groups" id="slots" aria-live="polite"></div>
                     </fieldset>
                     <fieldset>
-                        <legend class="s">4 · Pagamento</legend>
-                        <div class="pills">
-                            <span>Pix</span>
-                            <span>Dinheiro</span>
-                            <span>Cartão de crédito</span>
-                            <span>Cartão de débito</span>
-                        </div>
+                        <legend>4 · Pagamento <span class="legend-opt">(no local · opcional)</span></legend>
+                        <div class="chips pay-chips" id="pay"></div>
                     </fieldset>
 
                 </div>
@@ -101,6 +99,7 @@
                     <ul id="sl"></ul>
                     <div class="row"><span>Tempo</span><b id="st">A definir</b></div>
                     <div class="row"><span>Quando</span><b id="sw">A definir</b></div>
+                    <div class="row"><span>Pagamento</span><b id="spay">No local</b></div>
                     <div class="row"><span>Total</span><b id="sp">R$ 0,00</b></div>
                     <button class="b" id="ok" type="button" disabled>Confirmar agendamento</button>
                     <div class="msg" id="msg" role="status">Escolha ao menos um serviço, o dia e o horário.</div>
@@ -173,6 +172,7 @@
                 </div>
                 <div>
                     <h3 class="s" style="margin-top:0">Horário de atendimento</h3>
+                    <div class="status-pill loc-status" data-live-status></div>
                     <dl id="hrs"></dl>
                 </div>
             </div>
@@ -187,6 +187,14 @@
             <span>Domingo fechado</span>
         </div>
     </footer>
+
+    <div class="mbar" id="mbar" hidden aria-live="polite">
+        <div class="mbar-info">
+            <strong id="mbar-main"></strong>
+            <small id="mbar-sub"></small>
+        </div>
+        <button class="b mbar-btn" id="mbar-btn" type="button">Ver horários</button>
+    </div>
 
     <nav class="tab" aria-label="Navegação principal">
         <a href="#agendar" data-t="agendar">

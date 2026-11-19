@@ -251,6 +251,61 @@ nav a {
   font-size: 1.08rem;
 }
 
+.hero-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-bottom: 16px;
+}
+
+.hero-meta .k {
+  margin-bottom: 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--ln);
+  border-radius: 999px;
+  background: var(--s);
+  font: 500 12px Manrope, system-ui, sans-serif;
+  color: var(--m);
+}
+
+.status-pill:empty {
+  display: none;
+}
+
+.status-pill::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--m);
+}
+
+.status-pill.is-open {
+  color: var(--t);
+  border-color: rgba(87, 184, 132, 0.35);
+}
+
+.status-pill.is-open::before {
+  background: #57b884;
+  box-shadow: 0 0 8px rgba(87, 184, 132, 0.55);
+}
+
+.status-pill.is-closed::before {
+  background: #d99b52;
+}
+
+.loc-status {
+  margin: 10px 0 14px;
+}
+
 .acts {
   display: flex;
   gap: 12px;
@@ -347,6 +402,25 @@ legend {
   margin-bottom: 14px;
 }
 
+.legend-opt {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--m);
+}
+
+.svc-group + .svc-group {
+  margin-top: 22px;
+}
+
+.svc-head {
+  font: 600 12px Manrope, system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--m);
+  margin-bottom: 4px;
+}
+
 .svc {
   display: flex;
   align-items: center;
@@ -368,6 +442,10 @@ legend {
   transition: background-color 0.16s, border-color 0.16s;
 }
 
+.svc.svc-single input {
+  border-radius: 50%;
+}
+
 .svc input:checked {
   background: var(--g);
   border-color: var(--g);
@@ -383,12 +461,40 @@ legend {
   transform: rotate(-45deg) translate(1px, -1px);
 }
 
-.svc b {
-  flex: 1;
-  font-weight: 600;
+.svc.svc-single input:checked::after {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-radius: 50%;
+  background: #14100a;
+  transform: none;
 }
 
-.svc span {
+.svc-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.svc-name b {
+  font-weight: 600;
+  color: var(--t);
+}
+
+.svc-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid rgba(200, 164, 92, 0.45);
+  border-radius: 999px;
+  background: rgba(200, 164, 92, 0.12);
+  color: var(--g);
+  font: 600 11px Manrope, system-ui, sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.svc > span {
   color: var(--m);
   font-size: 14px;
 }
@@ -472,6 +578,46 @@ legend {
   min-height: 46px;
   font: 600 15px Manrope, system-ui, sans-serif;
   color: var(--t);
+}
+
+.slot-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.slot-group-title {
+  font: 600 12px Manrope, system-ui, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--m);
+  margin-bottom: 8px;
+}
+
+.slot-last {
+  display: block;
+  margin-top: 2px;
+  font: 600 10px Manrope, system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--g);
+}
+
+.chip input:checked + span .slot-last {
+  color: #14100a;
+}
+
+.chip.pay span {
+  min-width: auto;
+  min-height: 40px;
+  padding: 6px 14px;
+  font: 500 14px Manrope, system-ui, sans-serif;
+  color: var(--m);
+}
+
+.chip.pay input:checked + span {
+  color: #14100a;
+  font-weight: 600;
 }
 
 .sum {
@@ -772,6 +918,41 @@ dialog form .b {
   width: 100%;
 }
 
+.dlg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border: 1px solid rgba(200, 164, 92, 0.45);
+  border-radius: 999px;
+  background: rgba(200, 164, 92, 0.14);
+  color: var(--g);
+  font: 600 12px Manrope, system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dlg-note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--m);
+  text-align: center;
+}
+
+.dlg-link {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  background: none;
+  border: 0;
+  color: var(--g);
+  font: 600 14px Manrope, system-ui, sans-serif;
+  cursor: pointer;
+  text-align: center;
+}
+
 .x {
   position: absolute;
   right: 12px;
@@ -905,11 +1086,25 @@ dialog form .b {
   color: var(--g);
 }
 
+.ap.is-past {
+  opacity: 0.78;
+}
+
+.acc-sub {
+  margin-top: 32px;
+  margin-bottom: 8px;
+  font: 600 12px Manrope, system-ui, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--g);
+}
+
 /* ==========================================================================
    Barra de Navegação Inferior (Mobile) & Responsividade
    ========================================================================== */
 
-.tab {
+.tab,
+.mbar {
   display: none;
 }
 
@@ -924,6 +1119,53 @@ dialog form .b {
 
   body {
     padding-bottom: 72px;
+  }
+
+  body.has-mbar {
+    padding-bottom: 142px;
+  }
+
+  .mbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    z-index: 6;
+    background: rgba(21, 19, 15, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(200, 164, 92, 0.45);
+    padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px
+      max(16px, env(safe-area-inset-left, 0px));
+  }
+
+  .mbar-info {
+    min-width: 0;
+  }
+
+  .mbar-info strong {
+    display: block;
+    font-size: 14px;
+    color: var(--t);
+  }
+
+  .mbar-info small {
+    display: block;
+    font-size: 12px;
+    color: var(--m);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mbar-btn {
+    min-height: 42px;
+    padding: 0 18px;
+    font-size: 14px;
+    flex: none;
   }
 
   .tab {
